@@ -1,0 +1,7 @@
+langgraph 
+langchain-openai
+langchain-community
+python-dotenv
+langchain-ollama
+langchain-text-splitters
+matplotlib
