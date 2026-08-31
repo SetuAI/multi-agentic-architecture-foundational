@@ -53,7 +53,7 @@ carries many capabilities without bloating its prompt*.
 .
 ├── 1_Subagents/        Supervisor / orchestrator-worker (mechanics)
 ├── 2_SubAgenticRAG/    Applied: guarded, human-in-the-loop RAG (local Ollama)
-├── 3_Router/           Classify → parallel dispatch → merge (mechanics)
+├── 3_Router/           Classify -> parallel dispatch -> merge (mechanics)
 ├── 4_Handoffs/         Staged, stateful control transfer (mechanics)
 ├── 5_Skills/           One agent, load instructions on demand (mechanics)
 ├── 6_Skills/           Applied: agentic skills over live market data
@@ -143,7 +143,7 @@ flowchart TD
     R --> Z
 ```
 
-- **Domain:** a loan application — `intake → eligibility → submit`, where submit is unreachable unless eligibility passes.
+- **Domain:** a loan application — `intake -> eligibility -> submit`, where submit is unreachable unless eligibility passes.
 - **Run:** `export OPENAI_API_KEY=... && python handoffs_foundational.py`
 
 ## 5 · Skills — progressive disclosure
@@ -168,13 +168,13 @@ flowchart LR
 
 Skills done for real: each skill is a **`SKILL.md` file on disk with a bundled script**
 that pulls **live Yahoo Finance data** and computes a **0–100 risk score** (volatility +
-drawdown + beta). The agent runs a deterministic **plan → execute → interpret** flow —
+drawdown + beta). The agent runs a deterministic **plan -> execute -> interpret** flow —
 it decides which skill(s) and arguments, code loads and runs them, then the model
 explains the numbers.
 
 ```mermaid
 flowchart LR
-    Q([\"How risky is INFY.NS?\"]) --> PL[plan<br/>pick skills + args]
+    Q([user question]) --> PL[plan<br/>pick skills + args]
     PL --> EX[execute<br/>load SKILL.md · run script]
     EX --> YF[(Yahoo Finance)]
     YF --> EX
@@ -192,14 +192,14 @@ flowchart LR
 
 Walk down; stop at the first match.
 
-1. **Can one agent + good tools do it?** → do that.
-2. **A staged conversation where stages unlock in order?** → **Handoffs.**
-3. **One agent, many optional specialisations?** → **Skills.**
-4. **Split a query across known verticals, run in parallel, merge?** → **Router.**
-5. **Distinct domains needing a coordinator, context isolation, parallel work?** → **Sub-agents.**
+1. **Can one agent + good tools do it?** -> do that.
+2. **A staged conversation where stages unlock in order?** -> **Handoffs.**
+3. **One agent, many optional specialisations?** -> **Skills.**
+4. **Split a query across known verticals, run in parallel, merge?** -> **Router.**
+5. **Distinct domains needing a coordinator, context isolation, parallel work?** -> **Sub-agents.**
 
 And gate it all with one question: **is the task valuable enough to pay the extra
-tokens?** Multi-agent systems can use ~15× the tokens of a single chat — worth it for
+tokens?** Multi-agent systems can use ~15x the tokens of a single chat — worth it for
 valuable, parallelisable, context-heavy work; wasteful otherwise.
 
 ---
