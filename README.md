@@ -1,5 +1,3 @@
-# multi-agentic-architecture-foundational
-repo teaches you about  multi agentic architecture 
 # Multi-Agent Architectures — a Foundational, Hands-On Guide
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
